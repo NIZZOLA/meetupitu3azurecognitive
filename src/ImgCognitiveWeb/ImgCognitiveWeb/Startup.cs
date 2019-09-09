@@ -5,17 +5,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using ImgCognitiveWeb.Models;
+using AzureStorageLib.Models;
 
-namespace ImageRecognize
+namespace ImgCognitiveWeb
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            Configuration.GetSection("AzureStorageConfig").Get<AzureStorageConfig>();
         }
 
         public IConfiguration Configuration { get; }
@@ -32,6 +38,10 @@ namespace ImageRecognize
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<ImageStorageContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ImageStorageContext")));
+            services.AddSingleton<IConfiguration>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,8 +54,10 @@ namespace ImageRecognize
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 

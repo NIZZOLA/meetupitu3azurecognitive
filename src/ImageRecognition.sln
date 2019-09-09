@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageRecognition", "ImageRecognition\ImageRecognition.csproj", "{04571080-E09A-4403-ACF3-CA843CDA4284}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImgCognitiveWeb", "..\ImgCognitiveWeb\ImgCognitiveWeb\ImgCognitiveWeb.csproj", "{4F05CD6E-DCED-40D6-93E3-99601B3B99CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImgCognitiveWeb", "ImgCognitiveWeb\ImgCognitiveWeb\ImgCognitiveWeb.csproj", "{4F05CD6E-DCED-40D6-93E3-99601B3B99CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorageLib", "AzureStorageLib\AzureStorageLib.csproj", "{617BC543-39C4-414E-9EAA-1870A21416D0}"
 EndProject

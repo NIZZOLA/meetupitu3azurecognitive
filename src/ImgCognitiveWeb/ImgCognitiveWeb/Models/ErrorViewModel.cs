@@ -1,6 +1,6 @@
 using System;
 
-namespace ImageRecognize.Models
+namespace ImgCognitiveWeb.Models
 {
     public class ErrorViewModel
     {

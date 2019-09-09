@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ImageRecognize.Models;
+using ImgCognitiveWeb.Models;
 
-namespace ImageRecognize.Controllers
+namespace ImgCognitiveWeb.Controllers
 {
     public class HomeController : Controller
     {
