@@ -51,15 +51,9 @@
 </div>
 
 <div>
-    @{ 
-        if( Model.Storage)
-        {
-            @Html.Raw( "" + Model.Address )
-        }
-        else
-        {
-
-        }
-    }
-    @ViewBag.features
+    <img src="@ViewBag.ImageUrl" width="400"/>
+    <div style="color:#FFF;background-color:#000">
+        @ViewBag.features
+    </div>
+    
 </div>

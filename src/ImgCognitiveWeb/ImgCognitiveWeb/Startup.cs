@@ -42,6 +42,7 @@ namespace ImgCognitiveWeb
             services.AddDbContext<ImageStorageContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ImageStorageContext")));
             services.AddSingleton<IConfiguration>(Configuration);
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

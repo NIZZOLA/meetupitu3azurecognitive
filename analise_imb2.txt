@@ -1,0 +1,90 @@
+{
+	"Analysis": {
+		"categories": [{
+				"name": "people_portrait",
+				"score": 0.984375,
+				"detail": {
+					"celebrities": [],
+					"landmarks": null
+				}
+			}
+		],
+		"adult": {
+			"isAdultContent": false,
+			"isRacyContent": false,
+			"adultScore": 0.0034709954634308815,
+			"racyScore": 0.0051735937595367432
+		},
+		"color": null,
+		"imageType": {
+			"clipArtType": 0,
+			"lineDrawingType": 0
+		},
+		"tags": [{
+				"name": "human face",
+				"confidence": 0.97627586126327515,
+				"hint": null
+			}, {
+				"name": "smile",
+				"confidence": 0.93641173839569092,
+				"hint": null
+			}, {
+				"name": "person",
+				"confidence": 0.89647865295410156,
+				"hint": null
+			}, {
+				"name": "clothing",
+				"confidence": 0.84816217422485352,
+				"hint": null
+			}, {
+				"name": "woman",
+				"confidence": 0.69428431987762451,
+				"hint": null
+			}, {
+				"name": "posing",
+				"confidence": 0.37641251087188721,
+				"hint": null
+			}
+		],
+		"description": {
+			"tags": ["woman", "photo", "posing", "holding", "smiling", "standing", "sitting", "table", "man", "white", "wearing", "large", "room", "shirt"],
+			"captions": [{
+					"text": "a woman smiling for the camera",
+					"confidence": 0.94677319794470871
+				}
+			]
+		},
+		"faces": [{
+				"age": 42,
+				"gender": "Female",
+				"faceRectangle": {
+					"left": 51,
+					"top": 139,
+					"width": 237,
+					"height": 237
+				}
+			}
+		],
+		"objects": [{
+				"rectangle": {
+					"x": 1,
+					"y": 7,
+					"w": 396,
+					"h": 391
+				},
+				"object": "person",
+				"confidence": 0.843,
+				"parent": null
+			}
+		],
+		"brands": null,
+		"requestId": "44d674dc-6159-42c8-a4e9-0c17f3813632",
+		"metadata": {
+			"width": 400,
+			"height": 400,
+			"format": "Jpeg"
+		}
+	},
+	"Message": null,
+	"FileName": null
+}

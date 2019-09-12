@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ImageRecognition.Models
 {
-    public class PictureAnalisisReturn
+    public class PictureAnalisysReturn
     {
         public ImageAnalysis Analysis { get; set; }
         public string Message { get; set; }

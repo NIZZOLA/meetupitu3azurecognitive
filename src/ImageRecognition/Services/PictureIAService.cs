@@ -24,12 +24,12 @@ namespace ImageRecognition.Services
         }
 
         // Analyze a remote image
-        public async Task<PictureAnalisisReturn> AnalyzeRemoteAsync( string imageUrl, List<VisualFeatureTypes> features)
+        public async Task<PictureAnalisysReturn> AnalyzeRemoteAsync( string imageUrl, List<VisualFeatureTypes> features)
         {
             try
             {
 
-            var response = new PictureAnalisisReturn();
+            var response = new PictureAnalisysReturn();
             if (!Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
             {
                 response.Message = string.Format("Endereço remoto inválido: {0} ", imageUrl);
@@ -48,9 +48,9 @@ namespace ImageRecognition.Services
         }
 
         // Analyze a local image
-        public async Task<PictureAnalisisReturn> AnalyzeLocalAsync(string imagePath, List<VisualFeatureTypes> features)
+        public async Task<PictureAnalisysReturn> AnalyzeLocalAsync(string imagePath, List<VisualFeatureTypes> features)
         {
-            var response = new PictureAnalisisReturn();
+            var response = new PictureAnalisysReturn();
             if (!File.Exists(imagePath))
             {
                 response.Message = string.Format("Não é possível abrir ou ler o arquivo {0}", imagePath);

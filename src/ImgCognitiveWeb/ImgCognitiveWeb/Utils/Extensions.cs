@@ -18,5 +18,10 @@ namespace ImgCognitiveWeb.Utils
             }
             return false;
         }
+
+        public static string ToPercent( this double value )
+        {
+            return (value * 100).ToString("##0.000") + " %";
+        }
     }
 }

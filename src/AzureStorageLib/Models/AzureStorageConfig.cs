@@ -11,6 +11,7 @@ namespace AzureStorageLib.Models
         public string QueueName { get; set; }
         public string ImageContainer { get; set; }
         public string ThumbnailContainer { get; set; }
+        public string Url { get; set; }
 
     }
 }

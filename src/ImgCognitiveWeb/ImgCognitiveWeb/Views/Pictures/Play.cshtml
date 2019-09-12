@@ -1,67 +1,279 @@
-﻿@model ImgCognitiveWeb.Models.Picture
-
+﻿@model ImgCognitiveWeb.ViewModels.PlayViewModel
+@using ImgCognitiveWeb.Utils;
 @{
     ViewData["Title"] = "Play";
 }
 
 <h2>Play</h2>
 
+<style>
+    .itemBordered {
+        background-color: #E6E6FA;
+    }
+</style>
+
 <div>
     <h4>Picture Playground</h4>
+    <span>User @ViewBag.Session</span>
     <hr />
     <div class="col-md-6">
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Picture.Description)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Storage)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Storage)
+                @Html.DisplayFor(model => model.Picture.Description)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.DisplayNameFor(model => model.Picture.UserId)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Status)
+                @Html.DisplayFor(model => model.Picture.UserId)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.Result)
+                @Html.DisplayNameFor(model => model.Picture.Storage)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.Result)
+                @Html.DisplayFor(model => model.Picture.Storage)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Picture.Status)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Picture.Status)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Picture.Result)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Picture.Result)
             </dd>
         </dl>
     </div>
 </div>
 <div class="col-md-6">
-    <img src="@Model.Address" width="150" />
-    <div>
-        <div class="row">
-            <h4>Select your type of Analysis</h4>
+    <img src="@ViewBag.ImageUrl" width="400" />
+    <form>
+        <div>
+
+            <div class="row">
+                <h4>Select your type of Analysis</h4>
+            </div>
+            <div class="row">
+                <input type="checkbox" name="type" value="0" checked="checked" />Image Type
+                <input type="checkbox" name="type" value="1" checked="checked" />Faces
+                <input type="checkbox" name="type" value="2" checked="checked" />Adult
+                <input type="checkbox" name="type" value="3" checked="checked" />Categories
+                <input type="checkbox" name="type" value="4" checked="checked" />Color
+                <input type="checkbox" name="type" value="5" checked="checked" />Tags
+                <input type="checkbox" name="type" value="6" checked="checked" />Description
+                <input type="checkbox" name="type" value="7" checked="checked" />Objects
+                <input type="checkbox" name="type" value="8" checked="checked" />Brands
+
+            </div>
+            <div class="row">
+                <input type="submit" class="btn-success" value="Consultar" />
+            </div>
         </div>
-        <div class="row">
-            <input type="checkbox" value="0" checked="checked" />Image Type
-            <input type="checkbox" value="1" checked="checked" />Faces
-            <input type="checkbox" value="2" checked="checked" />Adult
-            <input type="checkbox" value="3" checked="checked" />Categories
-            <input type="checkbox" value="4" checked="checked" />Color
-            <input type="checkbox" value="5" checked="checked" />Tags
-            <input type="checkbox" value="6" checked="checked" />Description
-            <input type="checkbox" value="7" checked="checked" />Objects
-            <input type="checkbox" value="8" checked="checked" />Brands
-            <input type="button" value="Consultar" />
-        </div>
-    </div>
+    </form>
 </div>
 </div>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.PictureId">Edit</a> |
     <a asp-action="Index">Back to List</a>
+</div>
+@if (Model.AnalysisReturn.Analysis != null)
+{
+    <div class="row">
+        <div class="col-md-2">
+            <div>
+                <h3>Categories</h3>
+            </div>
+            <div>
+                @{
+                    if (Model.AnalysisReturn.Analysis.Categories != null)
+                    {
+                        foreach (var detail in Model.AnalysisReturn.Analysis.Categories)
+                        {
+                            <p>Name @detail.Name</p>
+                            <p>Score @detail.Score</p>
+                            if (detail.Detail != null && detail.Detail.Celebrities != null)
+                            {
+                                <h3>Celebrities</h3>
+                                foreach (var item in detail.Detail.Celebrities)
+                                {
+                                    <div class="itemBordered">
+                                        <p>Confidence: @item.Confidence.ToPercent() </p>
+                                        <p>Name: @item.Name</p>
+                                    </div>
+                                }
+                            }
+                        }
+                    }
+
+                }
+                }
+            </div>
+            <div>
+                <h3>Tags</h3>
+            </div>
+            <div>
+                @foreach (var item in Model.AnalysisReturn.Analysis.Description.Tags)
+                {
+                    <span>@item</span>
+                }
+            </div>
+            <div>
+                <h3>Captions</h3>
+            </div>
+            <div>
+                @foreach (var item in Model.AnalysisReturn.Analysis.Description.Captions)
+                {
+                    <div class="itemBordered">
+                        <p>Confidence: @item.Confidence.ToPercent() </p>
+                        <p>Caption: @item.Text</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div>
+                <h3>Adult</h3>
+            </div>
+            <div>
+                <span>@Model.AnalysisReturn.Analysis.Adult.AdultScore.ToPercent() % </span>
+            </div>
+            <div>
+                <h3>Racy</h3>
+            </div>
+            <div>
+                <span>@Model.AnalysisReturn.Analysis.Adult.RacyScore.ToPercent() % </span>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div>
+                <h3>Color</h3>
+            </div>
+            <div>
+                <span>
+                    @{
+                        if (Model.AnalysisReturn.Analysis.Color != null)
+                        {
+                            <p style="background-color:#@Model.AnalysisReturn.Analysis.Color.AccentColor">
+                                Accent Color
+                                @Model.AnalysisReturn.Analysis.Color.AccentColor
+                            </p>
+                            <p>Fundo @Model.AnalysisReturn.Analysis.Color.DominantColorBackground </p>
+                            <p>Frente @Model.AnalysisReturn.Analysis.Color.DominantColorForeground </p>
+
+                            <p>BW @Model.AnalysisReturn.Analysis.Color.IsBWImg </p>
+                            if (Model.AnalysisReturn.Analysis.Color.DominantColors.Count() > 0)
+                            {
+                                <h4>Dominant Color</h4>
+                                foreach (var item in Model.AnalysisReturn.Analysis.Color.DominantColors)
+                                {
+                                <div class="itemBordered">
+                                    <p> @item </p>
+                                </div>
+
+                                    }
+                                }
+                            }
+                        }
+                </span>
+            </div>
+
+            <div>
+                <h3>Image Type</h3>
+            </div>
+            <div>
+                @Model.AnalysisReturn.Analysis.ImageType.ClipArtType)
+            </div>
+
+        </div>
+
+
+
+        <div class="col-md-2">
+            <div>
+                <h3>Tags</h3>
+            </div>
+            <div>
+                @{
+                    foreach (var item in Model.AnalysisReturn.Analysis.Tags)
+                    {
+                        <div class="itemBordered">
+                            <p>Confidence: @item.Confidence.ToPercent() </p>
+                            <p>Hint: @item.Hint </p>
+                            <p>Name: @item.Name </p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div>
+                <h3>Faces</h3>
+            </div>
+            <div>
+                @{
+                    foreach (var item in Model.AnalysisReturn.Analysis.Faces)
+                    {
+                        <div class="itemBordered">
+                            <p> @item.Age </p>
+                            <p> @item.Gender </p>
+
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div>
+                <h3>Detected Object</h3>
+            </div>
+            <div>
+                @{
+                    foreach (var item in Model.AnalysisReturn.Analysis.Objects)
+                    {
+                        <div class="itemBordered">
+                            <p>Confidence: @item.Confidence.ToPercent() </p>
+                            <p> @item.ObjectProperty </p>
+                            <p>X: @item.Rectangle.X Y: @item.Rectangle.Y Width:@item.Rectangle.W Height: @item.Rectangle.H</p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div>
+                <h3>Detected Brands</h3>
+            </div>
+            <div>
+                @{
+                    if (Model.AnalysisReturn.Analysis.Brands != null)
+                    {
+                        foreach (var item in Model.AnalysisReturn.Analysis.Brands)
+                        {
+                            <div class="itemBordered">
+                                <p> @item.Name </p>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+
+
+
+    </div>
+}
+
+<div style="color:#FFF;background-color:#000">
+    @ViewBag.features
 </div>

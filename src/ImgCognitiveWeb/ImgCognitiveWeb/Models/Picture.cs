@@ -17,6 +17,7 @@ namespace ImgCognitiveWeb.Models
         public bool Storage { get; set; }
         public bool Status { get; set; }
         public string Result { get; set; }
+        public Guid UserId { get; set; }
 
     }
 }
