@@ -70,6 +70,23 @@ namespace ImgCognitiveWeb.Controllers
             }
             ViewBag.UniqueId = cookieValueFromReq;
 
+            return View(await _context.Picture.Where( a => a.UserId == Guid.Parse(cookieValueFromReq)).ToListAsync());
+        }
+
+        // GET: Pictures
+        public async Task<IActionResult> IndexAll()
+        {
+            string cookieValueFromContext = _httpContextAccessor.HttpContext.Request.Cookies["key"];
+            //read cookie from Request object  
+            string cookieValueFromReq = Request.Cookies["Key"];
+            //set the key value in Cookie  
+            if (cookieValueFromReq == null)
+            {
+                cookieValueFromReq = Guid.NewGuid().ToString();
+                SetCookie("key", cookieValueFromReq, 3600);
+            }
+            ViewBag.UniqueId = cookieValueFromReq;
+
             return View(await _context.Picture.ToListAsync());
         }
 
