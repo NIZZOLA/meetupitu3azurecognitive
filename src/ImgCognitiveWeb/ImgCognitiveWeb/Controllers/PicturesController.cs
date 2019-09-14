@@ -188,7 +188,9 @@ namespace ImgCognitiveWeb.Controllers
         // GET: Pictures/Create
         public IActionResult Create()
         {
-            return View();
+            var view = new Picture();
+            view.Storage = true;
+            return View(view);
         }
 
         // POST: Pictures/Create
