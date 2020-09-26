@@ -36,6 +36,7 @@ namespace ImageRecognition.Services
                 return response;
             }
             ImageAnalysis analysis = await _computerVision.AnalyzeImageAsync(imageUrl, features);
+                
             response.Analysis = analysis;
             return response;
 
