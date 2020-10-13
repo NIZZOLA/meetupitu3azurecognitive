@@ -40,8 +40,7 @@ namespace AzureStorageLib.Services
             }
             catch (Exception error)
             {
-
-                throw;
+                throw new Exception( error.Message.ToString() );
             }
             return await Task.FromResult(true);
         }
